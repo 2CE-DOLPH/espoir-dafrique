@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#c5ebdf"/><stop offset="1" stop-color="#fff6dc"/></linearGradient>
+    <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#fffdf5"/><stop offset="1" stop-color="#e7f2e7"/></linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#sky)"/>
+  <circle cx="985" cy="122" r="63" fill="#ffc96b"/>
+  <path d="M0 500Q180 380 360 495T760 470T1200 455V700H0Z" fill="#a9d8a0"/>
+  <path d="M0 573Q250 490 440 570T850 550T1200 575V700H0Z" fill="#62ae75"/>
+  <path d="M328 263 600 130l272 133v292H328Z" fill="url(#wall)" stroke="#345844" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M300 268 600 112l300 156" fill="none" stroke="#087a45" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M385 325h126v101H385zM689 325h126v101H689zM385 462h126v93H385zM689 462h126v93H689z" fill="#b9e3df" stroke="#55927d" stroke-width="12"/>
+  <path d="M539 555V420q0-61 61-61t61 61v135" fill="#e45d36" stroke="#345844" stroke-width="12"/>
+  <path d="M576 555v-118q0-24 24-24t24 24v118" fill="#fff3d3"/>
+  <path d="M540 248h120" stroke="#e45d36" stroke-width="20" stroke-linecap="round"/>
+  <path d="M95 560v-115m0 43-34-37m34 58 38-42m901 104V441m0 43-37-41m37 62 38-44" fill="none" stroke="#6b4935" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="94" cy="425" r="59" fill="#378d58"/><circle cx="1018" cy="416" r="67" fill="#378d58"/>
+  <path d="M450 635h310" stroke="#fff5dc" stroke-width="12" stroke-linecap="round"/>
+  <path d="m568 637 31-73 33 73" fill="#e45d36"/>
+</svg>

@@ -1,28 +1,95 @@
-const S=SITE,P=document.body.dataset.page,$=s=>document.querySelector(s),f=n=>n.toLocaleString('fr-FR'),im=S.images;
-const IC={book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',ball:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c3 3 3 10.8 0 12.8M18.4 5.6c-3 3-3 10.8 0 12.8"/>',monitor:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',snow:'<path d="M12 2v20M4 7l16 10M20 7L4 17"/>',shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',lang:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14c2.4 0 4 1.8 4 4.5"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/>',phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',wa:'<path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/>',cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>'};
-const I=n=>`<svg class="ic" viewBox="0 0 24 24">${IC[n]}</svg>`,IM=(n,c='')=>`<div class="im ${c}"><img src="assets/images/${n}" alt="" loading="lazy" onerror="this.remove()"></div>`;
-const hd=(t,p)=>`<div class="hd rv"><h2>${t}</h2>${p?`<p>${p}</p>`:''}</div>`,sec=(h,c='')=>`<section class="sec ${c}"><div class="wrap">${h}</div></section>`;
-const lc=l=>`<a class="card lvl rv" style="--c:${l.color}" href="niveaux.html#${l.id}"><div class="ico">${I('cap')}</div><h3>${l.name}</h3><p>${l.sub}</p><b>${f(l.fee)} GNF <small>par an</small></b></a>`;
-const ac=a=>`<div class="card rv"><div class="ico">${I(a[0])}</div><h3>${a[1]}</h3></div>`;
-const infra=()=>`<div class="grid">${S.infra.map(x=>`<div class="rv" style="position:relative">${IM(im[x[2]])}<div class="cap">${I(x[0])}${x[1]}</div></div>`).join('')}</div>`;
-const cta=()=>`<div class="wrap"><div class="cta rv"><h2>Inscriptions ouvertes pour ${S.year}</h2><p>${S.intro}</p><div class="btns"><a class="btn" href="contact.html">Inscrire mon enfant</a><a class="btn ghost" href="tel:${S.phones[0].replace(/ /g,'')}">${I('phone')}${S.phones[0]}</a></div></div></div>`;
-const pg=(t,p)=>`<div class="wrap pg"><h1 class="rv">${t}</h1><p class="rv">${p}</p></div>`;
-const mq=`<div class="mq"><div>${Array(8).fill(S.motto.join(' <b>✦</b> ')+' <b>✦</b>').join(' ')}</div></div>`;
-const T=S.team;
-const pages={
-home:()=>`<section class="hero"><i class="cloud" style="top:30px;right:6%"></i><i class="cloud" style="top:46%;left:2%;transform:scale(.7)"></i><div class="wrap hc"><h1>${S.tagline}</h1><div class="art"><div class="blobframe"><img src="assets/images/${im.hero}" alt="" onerror="this.remove()"></div><div class="medal"><img src="assets/images/${im.logo}" alt="Logo"></div></div><p>${S.intro}</p><div class="btns"><a class="btn" href="contact.html">Inscrire mon enfant</a><a class="btn ghost" href="ecole.html">Explorer notre école</a></div></div></section>${mq}`+
-sec(`<div class="path"><div class="rv"><h2>De la crèche au lycée</h2><p style="color:var(--mut);margin:14px 0 26px">Un parcours complet, du premier jour jusqu'à la Terminale.</p><a class="btn ghost" href="frais.html">Voir les frais de scolarité</a></div><div>${S.levels.map(l=>`<div class="row rv"><span class="nm">${l.name}</span><span class="sb">${l.sub}</span></div>`).join('')}</div></div>`)+sec(hd('Nos atouts')+`<div class="grid">${S.atouts.map(ac).join('')}</div>`,'soft')+sec(hd('Un cadre moderne et bien équipé')+infra())+cta(),
-ecole:()=>`<div class="wrap" style="padding-top:26px"><div class="rv">${IM(im.about,'wide')}</div></div>`+pg('Notre école','Le Groupe Scolaire Franco-Guinéen Les Héros d\'Afrique accueille les enfants de la crèche au lycée, à Dubréka.')+sec(`<div class="two"><div class="rv"><h2>Un groupe scolaire franco-guinéen</h2><p style="color:var(--mut);margin-top:16px">${S.tagline} ${S.intro}</p></div><ul class="facts rv"><li>${I('cap')}De la crèche au lycée</li><li>${I('lang')}Anglais, espagnol et arabe</li><li>${I('clock')}Garderie jusqu'à 18h00</li><li>${I('users')}Effectifs réduits, suivi personnalisé</li></ul></div>`)+sec(hd('Nos valeurs')+`<div class="vals">${S.pillars.map(p=>`<div class="rv"><h3>${p[0]}</h3><p>${p[1]}</p></div>`).join('')}</div>`,'dark')+sec(hd('Tenue scolaire','Une tenue adaptée à chaque cycle.')+`<div class="scroll rv"><table class="stack"><tr><th>Niveau</th><th>Garçons</th><th>Filles</th></tr>${S.levels.filter(l=>l.boys).map(l=>`<tr><td>${l.name}<small>${l.sub}</small></td><td data-label="Garçons">${l.boys}</td><td data-label="Filles">${l.girls}</td></tr>`).join('')}</table></div>`,'soft')+cta(),
-equipe:()=>pg('Notre équipe','Une direction présente et des enseignants engagés au service de chaque élève.')+sec(`<div class="two"><div class="rv">${IM(im.founder,'por')}</div><div class="rv"><h2>Le mot du fondateur</h2><p class="quote">« ${T.founder.text} »</p><p class="who">${T.founder.name}<span>${T.founder.role}</span></p></div></div>`)+sec(`<div class="two rev"><div class="rv">${IM(im.director,'por')}</div><div class="rv"><h2>Le mot du directeur</h2><p class="quote">« ${T.director.text} »</p><p class="who">${T.director.name}<span>${T.director.role}</span></p></div></div>`,'soft')+sec(hd('Nos enseignants',T.intro)+`<div class="grid">${T.points.map(p=>`<div class="rv"><div class="ico">${I(p[0])}</div><h3>${p[1]}</h3><p style="color:var(--mut)">${p[2]}</p></div>`).join('')}</div><div class="grid tg">${T.teachers.map(t=>`<div class="tc rv">${IM(t.img)}<b>${t.name}</b><span>${t.subject}</span></div>`).join('')}</div>`)+cta(),
-vie:()=>pg('Vie scolaire','Bibliothèque, terrain de basketball, salle informatique et activités périscolaires variées.')+sec(infra())+sec(hd('Galerie')+`<div class="grid">${im.gallery.map(g=>`<div class="rv">${IM(g)}</div>`).join('')}</div>`,'soft')+cta(),
-frais:()=>pg('Frais de scolarité '+S.year,'Tous les montants sont en francs guinéens (GNF).')+sec(`<h2 class="rv" style="margin-bottom:20px">Paiement par tranches</h2><div class="scroll rv"><table class="stack"><tr><th>Niveau</th><th>Annuel</th><th>1ère tranche<br>1er octobre</th><th>2ème tranche<br>1er janvier</th><th>3ème tranche<br>1er avril</th></tr>${S.levels.map(l=>`<tr><td>${l.name}<small>${l.sub}</small></td><td data-label="Annuel">${f(l.fee)}</td>${l.t.map((x,i)=>`<td data-label="${['1ère tranche (1er octobre)','2ème tranche (1er janvier)','3ème tranche (1er avril)'][i]}">${f(x)}</td>`).join('')}</tr>`).join('')}</table></div><div class="note rv">L'inscription non payée n'équivaut pas à une inscription définitive.</div><h2 class="rv" style="margin-bottom:20px">Frais complémentaires</h2><div class="scroll rv"><table style="min-width:0">${S.extras.map(e=>`<tr><td>${e[0]}</td><td>${e[1]}</td></tr>`).join('')}</table></div><h2 class="rv" style="margin:50px 0 20px">Comment inscrire votre enfant</h2><div class="grid steps">${S.steps.map(s=>`<div class="card rv"><h3>${s}</h3></div>`).join('')}</div>`)+cta(),
-contact:()=>pg('Contactez-nous','Appelez-nous, écrivez-nous sur WhatsApp ou passez à l\'école.')+sec(`<div class="two"><div class="card rv"><div class="ct"><div class="ico">${I('pin')}</div>${S.address}</div>${S.phones.map(p=>`<a class="ct" href="tel:${p.replace(/ /g,'')}"><div class="ico">${I('phone')}</div>${p}</a>`).join('')}<a class="btn" target="_blank" href="https://wa.me/${S.whatsapp}">${I('wa')}Écrire sur WhatsApp</a></div><form class="card rv" onsubmit="return go(this)"><h3>Demande d'inscription</h3><input name="n" placeholder="Votre nom" required><select name="l">${S.levels.map(l=>`<option>${l.name} (${l.sub})</option>`).join('')}</select><textarea name="m" rows="4" placeholder="Votre message"></textarea><button class="btn">Envoyer sur WhatsApp</button></form></div>`)
+const S=SITE;
+const pageName=document.body.dataset.page;
+const root=document.querySelector('#app');
+const number=value=>value.toLocaleString('fr-FR');
+const image=(name,alt,className='')=>`<div class="im ${className}"><img src="assets/images/${name}" alt="${alt}" loading="lazy"></div>`;
+const iconPaths={
+book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',
+ball:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/>',
+monitor:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+lang:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>',
+compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/>',
+cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>',
+pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+menu:'<path d="M4 7h16M4 12h16M4 17h16"/>'
 };
-window.go=f=>{open(`https://wa.me/${S.whatsapp}?text=`+encodeURIComponent(`Bonjour, je suis ${f.n.value}. Je souhaite inscrire mon enfant en ${f.l.value} pour ${S.year}. ${f.m.value}`));return false};
-const nav=[['index','Accueil'],['ecole','Notre école'],['equipe','Équipe'],['vie','Vie scolaire'],['frais','Frais'],['contact','Contact']],cur=location.pathname.split('/').pop().replace('.html','')||'index';
-document.documentElement.style.setProperty('--p',S.colors.primary);document.documentElement.style.setProperty('--a',S.colors.accent);
-document.title=S.short+' | '+S.name;
-$('#app').innerHTML=`<header class="nav"><a class="br" href="index.html"><img src="assets/images/${im.logo}" alt="">${S.short}</a><nav id="nv">${nav.map(n=>`<a href="${n[0]}.html" class="${n[0]==cur?'on':''}">${n[1]}</a>`).join('')}</nav><a class="btn sm" href="contact.html">Inscriptions</a><button class="burger" aria-label="Menu" onclick="nv.classList.toggle('open')">${I('menu')}</button></header>${pages[P]()}<footer><div class="wrap"><div><img src="assets/images/${im.logo}" alt=""><h3>${S.name}</h3><p>${S.motto.join(' · ')}</p></div><div><h3>Pages</h3>${nav.map(n=>`<a href="${n[0]}.html">${n[1]}</a>`).join('')}</div><div><h3>Contact</h3><p>${S.address}</p>${S.phones.map(p=>`<a href="tel:${p.replace(/ /g,'')}">${p}</a>`).join('')}</div></div><p class="cp">© ${new Date().getFullYear()} ${S.name}</p></footer><a class="wa" target="_blank" aria-label="WhatsApp" href="https://wa.me/${S.whatsapp}">${I('wa')}</a>`;
-const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.12});
-document.querySelectorAll('.rv').forEach((e,i)=>{e.style.transitionDelay=(i%4)*80+'ms';io.observe(e)});
-setTimeout(()=>$('#pre').classList.add('off'),1800);
+const icon=name=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${iconPaths[name]}</svg>`;
+const heading=(title,description='')=>`<div class="hd rv"><h2>${title}</h2>${description?`<p>${description}</p>`:''}</div>`;
+const section=(content,className='')=>`<section class="sec ${className}"><div class="wrap">${content}</div></section>`;
+const callToAction=()=>`<div class="wrap"><div class="cta rv"><p class="eyebrow">Un projet à imaginer ensemble</p><h2>Chaque parcours commence par une rencontre.</h2><p>Les inscriptions et les coordonnées seront précisées après validation du projet par l'établissement.</p><a class="btn" href="contact.html">Découvrir les étapes d'admission</a></div></div>`;
+
+const pages={
+home:()=>`<section class="hero"><div class="wrap hc">
+<p class="eyebrow">Un projet éducatif à Dubréka</p>
+<h1>${S.tagline}</h1>
+<p class="hero-copy">${S.intro}</p>
+<div class="btns"><a class="btn" href="ecole.html">Découvrir notre vision</a><a class="btn ghost" href="frais.html">Explorer les parcours</a></div>
+<div class="art"><div class="blobframe"><img src="assets/images/${S.images.hero}" alt="Illustration d'un campus imaginé pour Espoir d'Afrique"></div><div class="medal"><img src="assets/images/${S.images.logo}" alt="Logo du Groupe Scolaire Espoir d'Afrique"></div><div class="chip">Travail · Discipline · Succès</div></div>
+</div></section>
+<div class="mq"><div>${Array(5).fill(S.motto.join(' <b>✦</b> ')+' <b>✦</b>').join(' ')}</div></div>
+${section(`<div class="path"><div class="rv"><p class="eyebrow">Un chemin pour grandir</p><h2>De l'éveil aux grands projets.</h2><p class="muted">Des étapes adaptées à l'âge de l'enfant, de ses premières découvertes à la préparation de son avenir.</p><a class="text-link" href="ecole.html">Notre approche pédagogique →</a></div><div>${S.levels.map(level=>`<a class="row rv" href="frais.html#${level.id}"><span class="nm">${level.name}</span><span class="sb">${level.sub}</span></a>`).join('')}</div></div>`)}
+${section(heading('Une école qui donne envie d’apprendre','Un projet centré sur la curiosité, la confiance et le plaisir de progresser.')+`<div class="grid">${S.atouts.map(item=>`<article class="card rv"><div class="ico">${icon(item[0])}</div><h3>${item[1]}</h3></article>`).join('')}</div>`,'soft')}
+${section(heading('Apprendre autrement','Des idées d’ateliers à construire avec les élèves et les familles.')+`<div class="grid">${S.programmes.map(item=>`<article class="card program rv"><p class="eyebrow">${item[0]}</p><p>${item[1]}</p></article>`).join('')}</div>`)}
+${callToAction()}`,
+
+ecole:()=>`<div class="wrap page-intro"><p class="eyebrow rv">Notre projet d’école</p><h1 class="rv">Un cadre pour apprendre, essayer et s’épanouir.</h1><p class="rv">${S.intro}</p></div>
+<div class="wrap"><figure class="rv">${image(S.images.about,'Illustration d’une classe claire et accueillante','wide')}</figure></div>
+${section(`<div class="two"><div class="rv"><p class="eyebrow">Notre promesse</p><h2>Voir le potentiel avant les résultats.</h2><p class="muted">Espoir d'Afrique imagine une école où l'exigence va de pair avec l'encouragement : on apprend à faire des efforts, à demander de l'aide et à être fier de ses progrès.</p></div><ul class="facts rv"><li>${icon('cap')}Des parcours de l'éveil au lycée</li><li>${icon('lang')}Une ouverture sur les langues et les cultures</li><li>${icon('spark')}Des projets concrets et créatifs</li><li>${icon('users')}Une relation de confiance avec les familles</li></ul></div>`)}
+${section(heading('Nos repères','Trois idées simples pour faire grandir une communauté scolaire.')+`<div class="vals">${S.pillars.map(item=>`<article class="rv"><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div>`,'dark')}
+${section(heading('Des espaces imaginés pour apprendre','Les lieux et équipements présentés sont des propositions visuelles, pas une description de locaux existants.')+`<div class="grid">${S.spaces.map(item=>`<article class="space-card rv">${image(item.image,item.alt)}<div class="cap">${icon(item.icon)}${item.name}</div></article>`).join('')}</div>`,'soft')}
+${section(heading('Une tenue aux couleurs de l’école','Une idée de tenue proposée, à valider avec l’établissement.')+`<div class="uniform-note rv"><span class="uniform-swatch"></span><div><h3>Vert, clair et confortable</h3><p>Un polo clair avec une touche de vert : une proposition simple, pensée pour le quotidien des élèves.</p></div></div>`)}
+${callToAction()}`,
+
+equipe:()=>`<div class="wrap page-intro"><p class="eyebrow rv">Ensemble, pour chaque élève</p><h1 class="rv">Une équipe qui accompagne et encourage.</h1><p class="rv">Les fonctions et les personnes seront présentées après confirmation de l'équipe de l'établissement.</p></div>
+${section(heading('La communauté éducative','Un projet ambitieux se construit avec des adultes présents, des familles partenaires et des élèves acteurs.')+`<div class="grid team-grid">${S.team.map((item,index)=>`<article class="card rv"><span class="team-number">0${index+1}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div>`,'soft')}
+${section(heading('Notre façon d’accompagner','Des engagements pédagogiques proposés pour le projet Espoir d’Afrique.')+`<div class="grid">${S.programmes.map(item=>`<article class="program rv"><div class="ico">${icon('spark')}</div><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div>`)}
+${callToAction()}`,
+
+vie:()=>`<div class="wrap page-intro"><p class="eyebrow rv">Au quotidien</p><h1 class="rv">La vie scolaire, c’est aussi apprendre en dehors de la classe.</h1><p class="rv">Une vision de la vie d’école nourrie par la lecture, les expériences, le mouvement et les projets collectifs.</p></div>
+${section(heading('Des espaces pour explorer','Illustrations de lieux souhaités pour la vie de l’école.')+`<div class="grid">${S.spaces.map(item=>`<article class="space-card rv">${image(item.image,item.alt)}<div class="cap">${icon(item.icon)}${item.name}</div></article>`).join('')}</div>`,'soft')}
+${section(heading('La galerie des idées','Des images illustratives pour donner une première couleur au projet.')+`<div class="grid gallery">${S.images.gallery.map(item=>`<figure class="rv">${image(item.image,item.alt)}<figcaption>${item.title}</figcaption></figure>`).join('')}</div>`)}
+${section(heading('Des activités à faire grandir','Des pistes à adapter au programme et aux moyens de l’école.')+`<div class="grid">${S.programmes.map(item=>`<article class="card rv"><div class="ico">${icon('spark')}</div><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div>`,'soft')}
+${callToAction()}`,
+
+frais:()=>`<div class="wrap page-intro"><p class="eyebrow rv">Repères pour les familles</p><h1 class="rv">Des parcours et des tarifs faciles à comprendre.</h1><p class="rv">Les montants ci-dessous sont des estimations fictives, créées pour cette maquette. Ils ne constituent pas les tarifs officiels de l’établissement.</p></div>
+${section(heading('Proposition de frais annuels','Montants indicatifs en francs guinéens (GNF), répartis en trois tranches.')+`<div class="grid fee-grid">${S.levels.map(level=>`<article class="card fee-card rv" id="${level.id}" style="--c:${level.color}"><p class="eyebrow">${level.ages}</p><h3>${level.name}</h3><p>${level.sub}</p><strong>${number(level.fee)} <small>GNF / an</small></strong><div class="fee-splits">${level.t.map((amount,index)=>`<span>${index+1}<sup>e</sup> tranche <b>${number(amount)}</b></span>`).join('')}</div><p class="uniform-copy">${level.uniform}</p></article>`).join('')}</div><p class="note rv">${S.notice}</p>`,'soft')}
+${section(heading('Préparer la rentrée','Une proposition de démarche, à confirmer avec l’équipe éducative.')+`<div class="grid steps">${S.steps.map(step=>`<article class="card rv"><h3>${step}</h3></article>`).join('')}</div><div class="extras rv"><h3>Frais et matériel complémentaires</h3>${S.extras.map(item=>`<div><span>${item[0]}</span><b>${item[1]}</b></div>`).join('')}</div>`)}
+${callToAction()}`,
+
+contact:()=>`<div class="wrap page-intro"><p class="eyebrow rv">Parlons du projet</p><h1 class="rv">L’école se prépare avec vous.</h1><p class="rv">Avant d’ouvrir les inscriptions, les informations pratiques devront être confirmées par l'établissement.</p></div>
+${section(`<div class="two contact-layout"><article class="card rv"><div class="ico">${icon('pin')}</div><p class="eyebrow">Implantation envisagée</p><h2>${S.address}</h2><p>${S.contactNote}</p><span class="status-tag">Informations à confirmer</span></article><article class="contact-panel rv"><p class="eyebrow">Prochaine étape</p><h2>Donner vie à Espoir d’Afrique.</h2><p>Confirmer l’adresse, les contacts de l’école, les niveaux ouverts, les tarifs et les modalités d’inscription avant toute diffusion publique.</p><a class="btn" href="ecole.html">Revoir le projet</a></article></div>`,'soft')}
+${section(heading('Les étapes proposées')+`<div class="grid steps">${S.steps.map(step=>`<article class="card rv"><h3>${step}</h3></article>`).join('')}</div>`)}
+`
+};
+
+const nav=[
+['index','Accueil'],
+['ecole','Notre vision'],
+['equipe','Notre équipe'],
+['vie','Vie scolaire'],
+['frais','Parcours & tarifs'],
+['contact','Admissions']
+];
+const current=location.pathname.split('/').pop().replace('.html','')||'index';
+document.documentElement.style.setProperty('--p',S.colors.primary);
+document.documentElement.style.setProperty('--a',S.colors.accent);
+document.title=`${S.short} | ${S.name}`;
+
+root.innerHTML=`<header class="nav"><a class="br" href="index.html"><img src="assets/images/${S.images.logo}" alt="">${S.short}</a><nav id="nv">${nav.map(item=>`<a href="${item[0]}.html" class="${item[0]===current?'on':''}">${item[1]}</a>`).join('')}</nav><a class="btn sm" href="contact.html">Le projet</a><button class="burger" aria-label="Ouvrir le menu" onclick="document.querySelector('#nv').classList.toggle('open')">${icon('menu')}</button></header><aside class="notice" role="note">${S.notice}</aside>${(pages[pageName]||pages.home)()}<footer><div class="wrap"><div><img src="assets/images/${S.images.logo}" alt=""><h3>${S.name}</h3><p>${S.motto.join(' · ')}</p></div><div><h3>Explorer</h3>${nav.map(item=>`<a href="${item[0]}.html">${item[1]}</a>`).join('')}</div><div><h3>Projet d’école</h3><p>${S.address}</p><p>${S.contactNote}</p></div></div><p class="cp">© ${new Date().getFullYear()} ${S.name} · Projet de présentation à valider</p></footer>`;
+
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('in');
+observer.unobserve(entry.target);
+}
+}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((element,index)=>{
+element.style.transitionDelay=`${index%4*80}ms`;
+observer.observe(element);
+});
+const preloader=document.querySelector('#pre');
+if(preloader)setTimeout(()=>preloader.classList.add('off'),1000);
